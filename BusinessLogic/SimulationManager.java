@@ -16,14 +16,14 @@ public class SimulationManager implements Runnable{
     private Scheduler scheduler;
     private SimulationFrame frame;
     private List<Task> tasks;
-    private SelectionPolicy selectionPolicy = SelectionPolicy.SHORTEST_TIME;
-    private int timeLimit = 60;
-    private int numberOfQueues = 2;
-    private int numberOfClients = 4;
-    private int maxServiceTime = 5;
-    private int minServiceTime = 3;
-    private int minArrivalTime = 3;
-    private int maxArrivalTime = 30;
+    private SelectionPolicy selectionPolicy;
+    private int timeLimit;
+    private int numberOfQueues;
+    private int numberOfClients;
+    private int maxServiceTime;
+    private int minServiceTime;
+    private int minArrivalTime;
+    private int maxArrivalTime;
     private boolean ok;
     public static final Logger LOGGER = Logger.getLogger(SimulationManager.class.getName());
 
@@ -33,7 +33,7 @@ public class SimulationManager implements Runnable{
         this.frame.setVisible(true);
         this.frame.getStartButton().addActionListener(e -> {
             ok = true;
-            //getInfoFromGui1();
+            getInfoFromGui1();
             this.scheduler = new Scheduler(numberOfQueues, numberOfClients);
             this.tasks = new ArrayList<>();
             this.scheduler.changeStrategy(selectionPolicy);
